@@ -43,7 +43,6 @@
 </html>
 
 <?php
-$api_key = 'AIzaSyDAReT8NNMDqvNAXd40RPt8S1YUkxaXmmc';
 // 変数の初期化 & 日時の取得
 if(isset($_POST["submit"])){
   if($_POST["date"] && $_POST["time"] && $_POST["name"] && $_POST["comment"] && $_POST["contact"]) {

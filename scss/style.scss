@@ -1,0 +1,68 @@
+html {
+  font-size: 62.5%;
+}
+.hdInner {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+}
+h1 {
+  margin-top: 8rem;
+  font-size: 7rem;
+}
+.calendar-title {
+  font-size: 7rem;
+  text-align: center;
+}
+.calendar-table {
+  margin: 0 auto;
+  text-align: center;
+  .is-today {
+    color: blue;
+  }
+  td {
+    font-size: 10rem;
+    border: solid 1px black;
+  }
+  th {
+    font-size: 4rem;
+  }
+}
+
+h2 {
+  color:red;
+  font-size: 3rem;
+}
+.confirmHead {
+  text-align: center;
+  color: red;
+  font-size: 4rem;
+}
+
+.confirmTable {
+  margin-right: auto;
+  margin-left: auto;
+  th {
+    border: solid 1px black;
+    font-size: 4rem;
+  }
+  td {
+    border: solid 1px black;
+    font-size: 4rem;
+  }
+}
+
+footer {
+  margin: 1rem 0;
+}
+
+.reserveFormHead {
+  text-align: center;
+}
+
+.reserveForm {
+  font-size: 35px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

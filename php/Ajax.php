@@ -34,7 +34,5 @@ if($_POST["date"]) {
   $eM = "error";
 }
 
-//結果をjson形式で返す
-// header('Content-Type: application/json');
-// echo json_encode($select_result);
+
 ?>

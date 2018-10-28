@@ -80,7 +80,7 @@ window.addEventListener("DOMContentLoaded", function(){
                 name = json[i].name;
                 comment = json[i].comment;
                 contact = json[i].contact;
-                confirmTable.innerHTML += "<tbody><tr><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
+                confirmTable.innerHTML += "<tbody><tr id='js-delete'><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
               }
             }
           }
@@ -104,6 +104,12 @@ window.addEventListener("DOMContentLoaded", function(){
       }
     }
   };
+
+  function deleteFunc() {
+    document.getElementById("js-delete").addEventListener(click,function(){
+      
+    });
+  }
 
 
 

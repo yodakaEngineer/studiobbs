@@ -107,7 +107,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
   function deleteFunc() {
     document.getElementById("js-delete").addEventListener(click,function(){
-      
+
     });
   }
 

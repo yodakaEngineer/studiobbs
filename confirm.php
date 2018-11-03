@@ -20,7 +20,6 @@ if(isset($_POST["submit"])){
       ) VALUES (
         :date, :time,:name, :comment, :contact
       )";
-
       // SQL実行
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':date', $date, PDO::PARAM_STR);

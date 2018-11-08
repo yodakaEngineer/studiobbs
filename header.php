@@ -1,6 +1,9 @@
 <?php
 $q = date('s');
-$url = "/css/style.css";?>
+$url = "/css/style.css";
+session_start();
+session_regenerate_id();
+?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
 <head>

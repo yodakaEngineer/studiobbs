@@ -3,8 +3,14 @@ window.addEventListener("DOMContentLoaded", function(){
   month = document.getElementById('js-month'),
   tbody = document.getElementById('js-calendar-body'),
   calendarTable = document.getElementById("js-calendar-table"),
-  today = new Date();
-  const xhr = new XMLHttpRequest();
+  today = new Date(),
+  xhr = new XMLHttpRequest();
+  const dataTemplate = [
+    "deleteTime",
+    "deleteName",
+    "deleteComment",
+    "deleteContact"
+  ];
   let currentYear = today.getFullYear(),
   currentMonth = today.getMonth(),
   touchStartX,
@@ -53,25 +59,48 @@ window.addEventListener("DOMContentLoaded", function(){
   reserveDay = document.getElementsByClassName("day"),
   confirmTable = document.getElementById("js-confirmTable"),
   reserveFormHead = document.getElementById("js-reserveFormHead"),
-  clickFunc = function () {
+  reserveForm = document.getElementById('reserveForm');
+  let jsDelete,
+  dateStr;
+  const callback = function (){
+    jsDelete.addEventListener('click',function (){
+      let deleteData = jsDelete.children,
+      dataArray = [];
+      deleteData = Array.from(deleteData);
+      var i = 0;
+      deleteData.forEach(function(value){
+        var input = document.createElement('input');
+        input.setAttribute("type","hidden");
+        input.setAttribute("name",dataTemplate[i]);
+        input.setAttribute("value",value.innerHTML);
+        reserveForm.appendChild(input);
+        i++;
+      });
+    });
+    console.log("OK");
+  };
+  function clickFunc(callback) {
     for (let i = 0; i < reserveDay.length; i++) {
       if(reserveDay[i].innerHTML != ""){
         reserveDay[i].onclick = function () {
           const y = year.innerHTML,
           m = month.innerHTML,
-          day = this.innerHTML,
-          dateStr = y + '-' + m + '-' + day,
-          input = document.createElement('input'),
-          reserveForm = document.getElementById('reserveForm');
+          day = this.innerHTML;
+          dateStr = y + '-' + m + '-' + day;
           let time = "",
           name = "",
           comment = "",
           contact = "";
           thead = "<thead><tr><th>時間</th><th>名前</th><th>コメント</th><th>連絡先</th></tr></thead>";
           confirmTable.innerHTML = thead;
-
           date ='date=' + dateStr;
-
+          const input = document.createElement('input');
+          input.setAttribute("type","hidden");
+          input.setAttribute("value",dateStr);
+          input.setAttribute("id","js-date");
+          input.setAttribute("name","date");
+          console.log(input);
+          reserveForm.appendChild(input);
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) { // 通信の完了時
               json = JSON.parse(xhr.responseText);
@@ -81,42 +110,28 @@ window.addEventListener("DOMContentLoaded", function(){
                 comment = json[i].comment;
                 contact = json[i].contact;
                 confirmTable.innerHTML += "<tbody><tr id='js-delete'><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
+                if (confirmTable.innerHTML) {
+                  jsDelete = document.getElementById('js-delete');
+                  console.log(jsDelete);
+                  callback();
+                }
               }
             }
           }
-
-          if (document.getElementById('js-date')) {
-            jsDate = document.getElementById('js-date');
-            reserveForm.removeChild(jsDate);
-          }
-
           reserveFormHead.innerHTML = currentMonth+1 + "月" + this.innerHTML + "日予約フォーム";
           confirmHead.innerHTML = currentMonth+1 + "月" + this.innerHTML + "日予約状況";
           xhr.open('POST', '../php/Ajax.php', true);
           xhr.setRequestHeader('content-type','application/x-www-form-urlencoded;charset=UTF-8');
           xhr.send(date);
-          input.setAttribute("type","hidden");
-          input.setAttribute("value",dateStr);
-          input.setAttribute("id","js-date");
-          input.setAttribute("name","date");
-          reserveForm.appendChild(input);
         }
       }
     }
   };
 
-  function deleteFunc() {
-    document.getElementById("js-delete").addEventListener(click,function(){
-
-    });
-  }
-
-
 
   calendarHeading(currentYear, currentMonth);
   calendarBody(currentYear, currentMonth, today);
-  clickFunc();
-
+  clickFunc(callback);
   // スワイプ処理
 
   // 開始時

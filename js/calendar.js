@@ -34,19 +34,22 @@ window.addEventListener("DOMContentLoaded", function(){
     endDay = endDate.getDate();// その月の最後の日の曜日を取得
     let textDate = 1, // 日付(これがカウントアップされます)
     textSkip = true, // 日にちを埋める用のフラグ
-    tableBody =''; // テーブルのHTMLを格納する変数
+    tableBody ='', // テーブルのHTMLを格納する変数
+    textTd = '',
+    td = '';
     for (let row = 0; row < 6; row++){
       let tr = '<tr>';
       for (let col = 0; col < 7; col++) {
-        const addClass = todayYMFlag && textDate === today.getDate() ? 'is-today' : '',
-        textTd = textSkip ? '' : textDate++,
-        td = '<td class="'+addClass+' day">'+textTd+'</td>';
+        console.log(textSkip)
+        const addClass = todayYMFlag && textDate === today.getDate() ? 'is-today' : '';
         if (row === 0 && startDay === col){
           textSkip = false;
         }
         if (textDate > endDay) {
           textSkip = true;
         }
+        textTd = textSkip ? '' : textDate++;
+        td = '<td class="'+addClass+' day">'+textTd+'</td>';
         tr += td;
       }
       tr += '</tr>';

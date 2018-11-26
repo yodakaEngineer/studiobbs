@@ -40,7 +40,6 @@ window.addEventListener("DOMContentLoaded", function(){
     for (let row = 0; row < 6; row++){
       let tr = '<tr>';
       for (let col = 0; col < 7; col++) {
-        console.log(textSkip)
         const addClass = todayYMFlag && textDate === today.getDate() ? 'is-today' : '';
         if (row === 0 && startDay === col){
           textSkip = false;
@@ -80,7 +79,6 @@ window.addEventListener("DOMContentLoaded", function(){
         i++;
       });
     });
-    console.log("OK");
   };
   function clickFunc(callback) {
     for (let i = 0; i < reserveDay.length; i++) {
@@ -102,7 +100,6 @@ window.addEventListener("DOMContentLoaded", function(){
           input.setAttribute("value",dateStr);
           input.setAttribute("id","js-date");
           input.setAttribute("name","date");
-          console.log(input);
           reserveForm.appendChild(input);
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) { // 通信の完了時
@@ -115,7 +112,6 @@ window.addEventListener("DOMContentLoaded", function(){
                 confirmTable.innerHTML += "<tbody><tr id='js-delete'><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
                 if (confirmTable.innerHTML) {
                   jsDelete = document.getElementById('js-delete');
-                  console.log(jsDelete);
                   callback();
                 }
               }

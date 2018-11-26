@@ -9,7 +9,7 @@ session_regenerate_id();
 <head>
   <meta charset="utf-8">
   <title>練習室用掲示板</title>
-  <link rel="stylesheet" href=<?php echo $url."?".$q?>>
+  <link rel="stylesheet" href="<?php echo $url."?".$q?>">
   <link rel="stylesheet" href="/css/reboot.css">
 </head>
 <body>

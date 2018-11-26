@@ -76,3 +76,7 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+.calendarTitles {
+  display: flex;
+}

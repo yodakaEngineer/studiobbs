@@ -1,10 +1,11 @@
 <?php require_once "header.php"; ?>
 <main>
   <p><a href="index.php">Topへ戻る</a></p>
-  <form class="" action="index.html" method="post">
-    <input type="date" name="" value="">
-  </form>
-  <h2 class="calendar-title"><span id="js-year"></span>年 <span id="js-month"></span>月</h2>
+  <div class="calendarTitles">
+    <button id="js-skipMonth" class="monthButton" type="button" name="button"></button>
+    <h2 class="calendar-title"><span id="js-year"></span>年 <span id="js-month"></span>月</h2>
+    <button id="js-returnMonth" class="monthButton" type="button" name="button"></button>
+  </div>
   <table class="calendar-table" id = "js-calendar-table">
     <thead>
       <tr>
@@ -35,7 +36,6 @@
     <p><input id="delete" type="submit" name="delete" value="削除する"/></p>
   </form>
   <script src="/js/calendar.js" charset="utf-8"></script>
-  <!-- <script src="/js/Ajax.js" charset="utf-8"></script> -->
 </main>
 <footer>
 </footer>

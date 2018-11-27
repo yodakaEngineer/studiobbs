@@ -1,4 +1,4 @@
-<?php require_once "header.php"; ?>
+<?php include "header.php"; ?>
 <main>
   <p><a href="index.php">Topへ戻る</a></p>
   <div class="calendarTitles">

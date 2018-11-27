@@ -1,9 +1,6 @@
 <?php
-$date;
-$time;
-$name;
-$comment;
-$contact;
+require_once dirname(__FILE__)."/php/dbDefine.php";
+
 if(isset($_POST["submit"])){
   if($_POST["date"] && $_POST["time"] && $_POST["name"] && $_POST["comment"] && $_POST["contact"]) {
     $sql = null;
@@ -16,8 +13,7 @@ if(isset($_POST["submit"])){
     $contact = $_POST["contact"];
     try {
       // DBへ接続
-      $pdo = new PDO("mysql:host=127.0.0.1; dbname=bbs; charset=utf8", 'bbs', 'jvWBJ6HYixLuqwrS');
-      // 静的プレースホルダを用いるようにエミュレーションを無効化(プリペアードステートメントを使うため？)
+      $pdo = new PDO(DBCONF, DBUSER, DBPAS);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       // SQL作成
@@ -28,11 +24,11 @@ if(isset($_POST["submit"])){
       )";
       // SQL実行
       $stmt = $pdo->prepare($sql);
-      $stmt->bindValue(':date', (string)$date);
-      $stmt->bindValue(':time', (string)$time);
-      $stmt->bindValue(':name', (string)$name);
-      $stmt->bindValue(':comment', (string)$comment);
-      $stmt->bindValue(':contact', (string)$contact);
+      $stmt->bindValue(':date', $date);
+      $stmt->bindValue(':time', $time);
+      $stmt->bindValue(':name', $name);
+      $stmt->bindValue(':comment', $comment);
+      $stmt->bindValue(':contact', $contact);
       $stmt->execute();
       $_POST["submit"] = NULL;
     } catch(PDOException $e) {
@@ -41,7 +37,7 @@ if(isset($_POST["submit"])){
     // 接続を閉じる
     $pdo = null;
   } else {
-    echo "未入力の項目があるよ";
+    return "未入力の項目があるよ";
   }
 }
 
@@ -57,8 +53,7 @@ if(isset($_POST["delete"])){
     $contact = $_POST["deleteContact"];
     try {
       // DBへ接続
-      $pdo = new PDO("mysql:host=127.0.0.1; dbname=bbs; charset=utf8", 'bbs', 'jvWBJ6HYixLuqwrS');
-      // 静的プレースホルダを用いるようにエミュレーションを無効化(プリペアードステートメントを使うため？)
+      $pdo = new PDO(DBCONF, DBUSER, DBPAS);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       // SQL作成
@@ -67,11 +62,11 @@ if(isset($_POST["delete"])){
       ";
       // SQL実行
       $stmt = $pdo->prepare($sql);
-      $stmt->bindValue(':date', (string)$date);
-      $stmt->bindValue(':time', (string)$time);
-      $stmt->bindValue(':name', (string)$name);
-      $stmt->bindValue(':comment', (string)$comment);
-      $stmt->bindValue(':contact', (string)$contact);
+      $stmt->bindValue(':date', $date);
+      $stmt->bindValue(':time', $time);
+      $stmt->bindValue(':name', $name);
+      $stmt->bindValue(':comment', $comment);
+      $stmt->bindValue(':contact', $contact);
       $stmt->execute();
       $_POST["delete"] = NULL;
     } catch(PDOException $e) {
@@ -79,7 +74,9 @@ if(isset($_POST["delete"])){
     }
     // 接続を閉じる
     $pdo = null;
+  }else {
+  return "未入力の項目があるよ";
   }
 }
-require_once 'reserve.php';
+include dirname(__FILE__).'/reserve.php';
 ?>

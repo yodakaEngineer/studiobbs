@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__)."/dbDefine.php";
+
 if($_POST["date"]) {
   $sql = null;
   $stmt = null;
@@ -6,8 +8,7 @@ if($_POST["date"]) {
   $date = $_POST["date"];
   try {
     // DBへ接続
-    $pdo = new PDO("mysql:host=127.0.0.1; dbname=bbs; charset=utf8", 'bbs', 'jvWBJ6HYixLuqwrS');
-    // 静的プレースホルダを用いるようにエミュレーションを無効化
+    $pdo = new PDO(DBCONF, DBUSER, DBPAS);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // SQL作成

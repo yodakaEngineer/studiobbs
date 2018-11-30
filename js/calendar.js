@@ -64,6 +64,7 @@ window.addEventListener("DOMContentLoaded", function(){
   reserveForm = document.getElementById('reserveForm');
   let jsDelete,
   dateStr;
+
   const callback = function (){
     jsDelete.addEventListener('click',function (){
       let deleteData = jsDelete.children,
@@ -80,6 +81,7 @@ window.addEventListener("DOMContentLoaded", function(){
       });
     });
   };
+
   function clickFunc(callback) {
     for (let i = 0; i < reserveDay.length; i++) {
       if(reserveDay[i].innerHTML != ""){
@@ -126,6 +128,32 @@ window.addEventListener("DOMContentLoaded", function(){
       }
     }
   };
+
+  returnMonth = document.getElementById("js-returnMonth");
+  returnMonth.addEventListener("click", function(){
+    if (currentMonth === 11) {
+      currentMonth = 0;
+      currentYear ++;
+    } else {
+      currentMonth ++;
+    }
+    calendarHeading(currentYear, currentMonth);
+    calendarBody(currentYear, currentMonth, today);
+    clickFunc(callback);
+  });
+
+  skipMonth = document.getElementById("js-skipMonth");
+  skipMonth.addEventListener("click", function(){
+    if (currentMonth === 0) {
+      currentMonth = 11;
+      currentYear --;
+    } else {
+      currentMonth --;
+    }
+    calendarHeading(currentYear, currentMonth);
+    calendarBody(currentYear, currentMonth, today);
+    clickFunc(callback);
+  });
 
 
   calendarHeading(currentYear, currentMonth);

@@ -2,6 +2,14 @@ html {
   font-size: 62.5%;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .hdInner {
   display: flex;
   justify-content: center;
@@ -79,4 +87,23 @@ footer {
 
 .calendarTitles {
   display: flex;
+}
+
+.toReserve {
+  font-size: 4.0rem;
+  text-align: center;
+}
+
+.toReserve a {
+  color: white;
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding-right: 3px;
+  padding-left: 3px;
+  background-color: indigo;
+}
+
+.Desc {
+  text-align: center;
+  font-size: 3rem;
 }

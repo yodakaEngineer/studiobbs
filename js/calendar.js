@@ -66,18 +66,20 @@ window.addEventListener("DOMContentLoaded", function(){
   dateStr;
 
   const callback = function (){
-    jsDelete.addEventListener('click',function (){
-      let deleteData = jsDelete.children,
-      dataArray = [];
-      deleteData = Array.from(deleteData);
-      var i = 0;
-      deleteData.forEach(function(value){
-        var input = document.createElement('input');
-        input.setAttribute("type","hidden");
-        input.setAttribute("name",dataTemplate[i]);
-        input.setAttribute("value",value.innerHTML);
-        reserveForm.appendChild(input);
-        i++;
+    jsDelete.forEach(function(x){
+      x.addEventListener('click',function (){
+        let deleteData = x.children,
+        dataArray = [];
+        deleteData = Array.from(deleteData);
+        var i = 0;
+        deleteData.forEach(function(value){
+          var input = document.createElement('input');
+          input.setAttribute("type","hidden");
+          input.setAttribute("name",dataTemplate[i]);
+          input.setAttribute("value",value.innerHTML);
+          reserveForm.appendChild(input);
+          i++;
+        });
       });
     });
   };
@@ -111,9 +113,9 @@ window.addEventListener("DOMContentLoaded", function(){
                 name = json[i].name;
                 comment = json[i].comment;
                 contact = json[i].contact;
-                confirmTable.innerHTML += "<tbody><tr id='js-delete'><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
+                confirmTable.innerHTML += "<tbody><tr class='js-delete'><td>"+time+"</td><td>"+name+"</td><td>"+comment+"</td><td>"+contact+"</td></tr></tbody>";
                 if (confirmTable.innerHTML) {
-                  jsDelete = document.getElementById('js-delete');
+                  jsDelete = document.getElementsByClassName('js-delete');
                   callback();
                 }
               }

@@ -87,6 +87,7 @@ footer {
 
 .calendarTitles {
   display: flex;
+  justify-content: center;
 }
 
 .toReserve {
